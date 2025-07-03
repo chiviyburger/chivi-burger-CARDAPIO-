@@ -1,133 +1,129 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Cardápio Chivi&Burger</title>
-<style>
-  body {
-    font-family: 'Arial', sans-serif;
-    background: #f8f8f8;
-    margin: 0; padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1.5rem;
-    padding: 2rem;
-  }
-
-  h1 {
-    color: #ff6200;
-    text-align: center;
-  }
-
-  FRENTE.jpg {
-    display: flex;
-    gap: 1rem;
-    max-width: 600px;
-    width: 100%;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-
-REVERSO.jpg {
-    max-width: 280px;
-    width: 100%;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-    transition: transform 0.3s ease;
-  }
-
-  .cardapio-img:hover {
-    transform: scale(1.05);
-  }
-
-  .btn-whatsapp-container {
-    display: flex;
-    gap: 1rem;
-    margin-top: 2rem;
-  }
-
-  .btn-whatsapp {
-    background: #25d366;
-    border-radius: 50px;
-    border: none;
-    padding: 0.8rem 1.4rem;
-    font-weight: bold;
-    color: white;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 0.7rem;
-    font-size: 1.1rem;
-    box-shadow: 0 5px 15px rgba(37,211,102,0.4);
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .btn-whatsapp:hover {
-    box-shadow: 0 8px 25px rgba(37,211,102,0.7);
-    transform: translateY(-3px);
-  }
-
-  .btn-whatsapp img {
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
-  }
-
-  /* Animación de pulsación */
-  @keyframes pulse {
-    0%, 100% {
-      box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cardápio Chivi&Burger</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background: #f8f8f8;
+      margin: 0; padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+      padding: 2rem;
     }
-    50% {
-      box-shadow: 0 0 0 10px rgba(37, 211, 102, 0);
-    }
-  }
 
-  .btn-whatsapp.pulse {
-    animation: pulse 2s infinite;
-  }
-</style>
+    h1 {
+      color: #ff6200;
+      text-align: center;
+    }
+
+    .cardapio-container {
+      display: flex;
+      gap: 1rem;
+      max-width: 600px;
+      width: 100%;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .cardapio-img {
+      max-width: 280px;
+      width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      transition: transform 0.3s ease;
+    }
+
+    .cardapio-img:hover {
+      transform: scale(1.05);
+    }
+
+    .btn-whatsapp-container {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .btn-whatsapp {
+      background: #25d366;
+      border-radius: 50px;
+      border: none;
+      padding: 0.8rem 1.4rem;
+      font-weight: bold;
+      color: white;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      font-size: 1.1rem;
+      box-shadow: 0 5px 15px rgba(37,211,102,0.4);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-whatsapp:hover {
+      box-shadow: 0 8px 25px rgba(37,211,102,0.7);
+      transform: translateY(-3px);
+    }
+
+    .btn-whatsapp img {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+      }
+      50% {
+        box-shadow: 0 0 0 10px rgba(37, 211, 102, 0);
+      }
+    }
+
+    .btn-whatsapp.pulse {
+      animation: pulse 2s infinite;
+    }
+  </style>
 </head>
 <body>
 
-<h1>Cardápio Chivi&Burger</h1>
+  <h1>Cardápio Chivi&Burger</h1>
 
-<div class="cardapio-container">
-  <!-- Aquí reemplaza src con las imágenes reales que subirás -->
-  <img src="frente-cardapio.jpg" alt="Frente do Cardápio" class="cardapio-img" />
-  <img src="reverso-cardapio.jpg" alt="Verso do Cardápio" class="cardapio-img" />
-</div>
+  <div class="cardapio-container">
+    <img src="FRENTE.jpg" alt="Frente do Cardápio" class="cardapio-img" />
+    <img src="REVERSO.jpg" alt="Verso do Cardápio" class="cardapio-img" />
+  </div>
 
-<div class="btn-whatsapp-container">
-  <button class="btn-whatsapp pulse" onclick="openWhatsApp('br')">
-    <img src="https://flagcdn.com/w40/br.png" alt="Brasil" />
-    WhatsApp Brasil
-  </button>
+  <div class="btn-whatsapp-container">
+    <button class="btn-whatsapp pulse" onclick="openWhatsApp('br')">
+      <img src="https://flagcdn.com/w40/br.png" alt="Brasil" />
+      WhatsApp Brasil
+    </button>
 
-  <button class="btn-whatsapp pulse" onclick="openWhatsApp('uy')">
-    <img src="https://flagcdn.com/w40/uy.png" alt="Uruguai" />
-    WhatsApp Uruguai
-  </button>
-</div>
+    <button class="btn-whatsapp pulse" onclick="openWhatsApp('uy')">
+      <img src="https://flagcdn.com/w40/uy.png" alt="Uruguai" />
+      WhatsApp Uruguai
+    </button>
+  </div>
 
-<script>
-  function openWhatsApp(country) {
-    let number = '';
-    if(country === 'br') {
-      // Brasil (sem +)
-      number = '55997332232';
-    } else if(country === 'uy') {
-      // Uruguai com +55 extra
-      number = '555597332232';
+  <script>
+    function openWhatsApp(country) {
+      let number = '';
+      if(country === 'br') {
+        number = '55997332232'; // Brasil
+      } else if(country === 'uy') {
+        number = '555597332232'; // Uruguai
+      }
+      const url = `https://wa.me/${number}`;
+      window.open(url, '_blank');
     }
-    const url = `https://wa.me/${number}`;
-    window.open(url, '_blank');
-  }
-</script>
+  </script>
 
 </body>
 </html>
