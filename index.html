@@ -15,31 +15,25 @@
       align-items: center;
     }
 
-    h1 {
-      display: none;
-    }
-
     .slider-container {
       position: relative;
       width: 100%;
       max-width: 800px;
-      aspect-ratio: 3/4;
+      aspect-ratio: 3 / 4;
       overflow: hidden;
       border-radius: 12px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
       background: #ffffff;
     }
 
     .slider-wrapper {
       display: flex;
-      transition: transform 0.7s ease;
-      width: 300%; /* 3 páginas */
+      transition: transform 0.6s ease-in-out;
       height: 100%;
     }
 
     .slide {
-      width: 100%;
-      flex-shrink: 0;
+      flex: 0 0 100%;
       height: 100%;
     }
 
@@ -49,14 +43,12 @@
       object-fit: contain;
       display: block;
       border-radius: 12px;
-      background: #fff;
     }
 
     .nav-buttons {
       margin-top: 1rem;
       display: flex;
       gap: 1rem;
-      align-items: center;
     }
 
     .arrow-btn {
@@ -79,7 +71,7 @@
     .btn-whatsapp-container {
       display: flex;
       gap: 1rem;
-      margin: 2rem 0 0;
+      margin: 2rem 0;
       flex-wrap: wrap;
       justify-content: center;
     }
@@ -96,12 +88,12 @@
       align-items: center;
       gap: 0.7rem;
       font-size: 1.1rem;
-      box-shadow: 0 5px 15px rgba(37,211,102,0.4);
+      box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
       transition: all 0.3s ease;
     }
 
     .btn-whatsapp:hover {
-      box-shadow: 0 8px 25px rgba(37,211,102,0.7);
+      box-shadow: 0 8px 25px rgba(37, 211, 102, 0.7);
       transform: translateY(-3px);
     }
 
@@ -127,8 +119,8 @@
 </head>
 <body>
 
-  <!-- SLIDER CON 3 PÁGINAS -->
-  <div class="slider-container">
+  <!-- SLIDER DE 3 PÁGINAS -->
+  <div class="slider-container" id="slider-container">
     <div class="slider-wrapper" id="slider">
       <div class="slide">
         <img src="CARDAPIO.jpg" alt="Página Inicial" />
@@ -148,7 +140,7 @@
     <button class="arrow-btn" onclick="changeSlide(1)">&#8594;</button>
   </div>
 
-  <!-- BOTONES WHATSAPP -->
+  <!-- WHATSAPP -->
   <div class="btn-whatsapp-container">
     <button class="btn-whatsapp pulse" onclick="openWhatsApp('br')">
       <img src="https://flagcdn.com/w40/br.png" alt="Brasil" />
@@ -163,11 +155,13 @@
 
   <script>
     let currentSlide = 0;
+    const slider = document.getElementById('slider');
+
     function changeSlide(direction) {
-      const slider = document.getElementById('slider');
+      const totalSlides = slider.children.length;
       currentSlide += direction;
       if (currentSlide < 0) currentSlide = 0;
-      if (currentSlide > 2) currentSlide = 2;
+      if (currentSlide >= totalSlides) currentSlide = totalSlides - 1;
       slider.style.transform = `translateX(-${currentSlide * 100}%)`;
     }
 
@@ -181,6 +175,18 @@
       const url = `https://wa.me/${number}`;
       window.open(url, '_blank');
     }
+
+    // Soporte para deslizar con el dedo (Swipe en celular)
+    let startX = 0;
+    document.getElementById('slider-container').addEventListener('touchstart', (e) => {
+      startX = e.touches[0].clientX;
+    });
+
+    document.getElementById('slider-container').addEventListener('touchend', (e) => {
+      const endX = e.changedTouches[0].clientX;
+      if (startX - endX > 50) changeSlide(1); // deslizar a la izquierda
+      if (endX - startX > 50) changeSlide(-1); // deslizar a la derecha
+    });
   </script>
 
 </body>
