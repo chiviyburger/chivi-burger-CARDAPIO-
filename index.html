@@ -1,53 +1,133 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chivi&Burger - Cardápio</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #000;
-            color: #fff;
-            text-align: center;
-        }
-        img {
-            max-width: 100%;
-            height: auto;
-            display: block;
-            margin: 0 auto;
-        }
-       <!-- Botón WhatsApp con ícono SVG y animación -->
-<a 
-  href="https://wa.me/55997332232" 
-  target="_blank" 
-  rel="noopener noreferrer" 
-  style="
-    display: inline-flex;
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Cardápio Chivi&Burger</title>
+<style>
+  body {
+    font-family: 'Arial', sans-serif;
+    background: #f8f8f8;
+    margin: 0; padding: 0;
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    background-color: #25D366;
-    color: white;
-    padding: 12px 20px;
-    border-radius: 30px;
-    font-weight: bold;
-    text-decoration: none;
-    font-family: Arial, sans-serif;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    cursor: pointer;
-  "
-  onmouseover="this.style.backgroundColor='#1ebe57'; this.style.transform='scale(1.05)'"
-  onmouseout="this.style.backgroundColor='#25D366'; this.style.transform='scale(1)'"
->
-  <!-- Ícono SVG WhatsApp -->
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="white" viewBox="0 0 24 24" style="margin-right: 10px;">
-    <path d="M20.52 3.48A11.855 11.855 0 0012 0C5.373 0 0 5.373 0 12a11.946 11.946 0 001.83 6.16L0 24l5.88-1.87A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12 0-3.2-1.247-6.21-3.48-8.52zM12 21.82a9.77 9.77 0 01-5.13-1.43l-.37-.22-3.5 1.1 1.18-3.41-.24-.37A9.81 9.81 0 012.22 12a9.78 9.78 0 0117.56-6.9 9.767 9.767 0 01-7.78 16.72zM16.5 14.4c-.26-.13-1.53-.75-1.77-.83-.24-.07-.42-.13-.6.13s-.69.83-.84 1c-.15.17-.3.2-.56.07-.26-.13-1.1-.41-2.1-1.3-.78-.7-1.3-1.56-1.46-1.82-.15-.26-.02-.4.11-.53.11-.11.26-.3.39-.45.13-.15.17-.26.26-.43.09-.17.04-.32-.02-.45-.07-.13-.6-1.43-.82-1.96-.22-.5-.44-.43-.6-.44-.15-.01-.32-.01-.49-.01s-.45.07-.69.32c-.24.26-.92.9-.92 2.18s.94 2.52 1.07 2.7c.13.17 1.86 2.84 4.52 3.99.63.27 1.12.43 1.5.55.63.2 1.2.17 1.65.1.5-.08 1.53-.62 1.75-1.22.22-.6.22-1.12.15-1.22-.07-.1-.26-.15-.55-.26z"/>
-  </svg>
-  WhatsApp (99) 9733-2232
-</a>
+    gap: 1.5rem;
+    padding: 2rem;
+  }
 
-    </a>
+  h1 {
+    color: #ff6200;
+    text-align: center;
+  }
+
+  .cardapio-container {
+    display: flex;
+    gap: 1rem;
+    max-width: 600px;
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .cardapio-img {
+    max-width: 280px;
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    transition: transform 0.3s ease;
+  }
+
+  .cardapio-img:hover {
+    transform: scale(1.05);
+  }
+
+  .btn-whatsapp-container {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .btn-whatsapp {
+    background: #25d366;
+    border-radius: 50px;
+    border: none;
+    padding: 0.8rem 1.4rem;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    font-size: 1.1rem;
+    box-shadow: 0 5px 15px rgba(37,211,102,0.4);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-whatsapp:hover {
+    box-shadow: 0 8px 25px rgba(37,211,102,0.7);
+    transform: translateY(-3px);
+  }
+
+  .btn-whatsapp img {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+  }
+
+  /* Animación de pulsación */
+  @keyframes pulse {
+    0%, 100% {
+      box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+    }
+    50% {
+      box-shadow: 0 0 0 10px rgba(37, 211, 102, 0);
+    }
+  }
+
+  .btn-whatsapp.pulse {
+    animation: pulse 2s infinite;
+  }
+</style>
+</head>
+<body>
+
+<h1>Cardápio Chivi&Burger</h1>
+
+<div class="cardapio-container">
+  <!-- Aquí reemplaza src con las imágenes reales que subirás -->
+  <img src="frente-cardapio.jpg" alt="Frente do Cardápio" class="cardapio-img" />
+  <img src="reverso-cardapio.jpg" alt="Verso do Cardápio" class="cardapio-img" />
+</div>
+
+<div class="btn-whatsapp-container">
+  <button class="btn-whatsapp pulse" onclick="openWhatsApp('br')">
+    <img src="https://flagcdn.com/w40/br.png" alt="Brasil" />
+    WhatsApp Brasil
+  </button>
+
+  <button class="btn-whatsapp pulse" onclick="openWhatsApp('uy')">
+    <img src="https://flagcdn.com/w40/uy.png" alt="Uruguai" />
+    WhatsApp Uruguai
+  </button>
+</div>
+
+<script>
+  function openWhatsApp(country) {
+    let number = '';
+    if(country === 'br') {
+      // Brasil (sem +)
+      number = '55997332232';
+    } else if(country === 'uy') {
+      // Uruguai com +55 extra
+      number = '555597332232';
+    }
+    const url = `https://wa.me/${number}`;
+    window.open(url, '_blank');
+  }
+</script>
+
 </body>
 </html>
