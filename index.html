@@ -8,43 +8,81 @@
     body {
       font-family: 'Arial', sans-serif;
       background: #f8f8f8;
-      margin: 0; padding: 0;
+      margin: 0;
+      padding: 2rem 1rem;
       display: flex;
       flex-direction: column;
       align-items: center;
     }
 
+    /* LOGO */
+    .logo-container img {
+      max-width: 200px;
+      width: 100%;
+      height: auto;
+      margin-bottom: 1.5rem;
+    }
+
     h1 {
       color: #ff6200;
       text-align: center;
-      margin: 2rem 1rem;
+      margin-bottom: 2rem;
     }
 
-    .cardapio-container {
+    .slider-container {
+      position: relative;
       width: 100%;
       max-width: 900px;
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
-      padding: 0 1rem;
-    }
-
-    .cardapio-img {
-      width: 100%;
-      height: auto;
+      overflow: hidden;
       border-radius: 12px;
       box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-      transition: transform 0.3s ease;
     }
 
-    .cardapio-img:hover {
-      transform: scale(1.01);
+    .slider-wrapper {
+      display: flex;
+      transition: transform 0.7s ease;
+      width: 300%; /* 3 páginas */
+    }
+
+    .slide {
+      width: 100%;
+      flex-shrink: 0;
+    }
+
+    .slide img {
+      width: 100%;
+      display: block;
+      border-radius: 12px;
+    }
+
+    .nav-buttons {
+      margin-top: 1rem;
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .arrow-btn {
+      background: #ff6200;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      font-size: 24px;
+      cursor: pointer;
+      box-shadow: 0 5px 15px rgba(255, 98, 0, 0.4);
+      transition: transform 0.2s;
+    }
+
+    .arrow-btn:hover {
+      transform: scale(1.1);
     }
 
     .btn-whatsapp-container {
       display: flex;
       gap: 1rem;
-      margin: 3rem 0 2rem;
+      margin: 2.5rem 0 0;
       flex-wrap: wrap;
       justify-content: center;
     }
@@ -92,13 +130,35 @@
 </head>
 <body>
 
-  <h1>Cardápio Chivi&Burger</h1>
-
-  <div class="cardapio-container">
-    <img src="FRENTE.jpg" alt="Frente do Cardápio" class="cardapio-img" />
-    <img src="REVERSO.jpg" alt="Verso do Cardápio" class="cardapio-img" />
+  <!-- LOGO -->
+  <div class="logo-container">
+    <img src="LOGO.png" alt="Logo Chivi&Burger" />
   </div>
 
+  <h1>Cardápio Chivi&Burger</h1>
+
+  <!-- SLIDER -->
+  <div class="slider-container">
+    <div class="slider-wrapper" id="slider">
+      <div class="slide">
+        <img src="CARDAPIO.jpg" alt="Página de Boas-vindas" />
+      </div>
+      <div class="slide">
+        <img src="FRENTE.jpg" alt="Frente do Cardápio" />
+      </div>
+      <div class="slide">
+        <img src="REVERSO.jpg" alt="Verso do Cardápio" />
+      </div>
+    </div>
+  </div>
+
+  <!-- FLECHAS -->
+  <div class="nav-buttons">
+    <button class="arrow-btn" onclick="changeSlide(-1)">&#8592;</button>
+    <button class="arrow-btn" onclick="changeSlide(1)">&#8594;</button>
+  </div>
+
+  <!-- WHATSAPP -->
   <div class="btn-whatsapp-container">
     <button class="btn-whatsapp pulse" onclick="openWhatsApp('br')">
       <img src="https://flagcdn.com/w40/br.png" alt="Brasil" />
@@ -112,12 +172,21 @@
   </div>
 
   <script>
+    let currentSlide = 0;
+    function changeSlide(direction) {
+      const slider = document.getElementById('slider');
+      currentSlide += direction;
+      if (currentSlide < 0) currentSlide = 0;
+      if (currentSlide > 2) currentSlide = 2;
+      slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+    }
+
     function openWhatsApp(country) {
       let number = '';
       if(country === 'br') {
-        number = '55997332232'; // Brasil
+        number = '55997332232';
       } else if(country === 'uy') {
-        number = '555597332232'; // Uruguai
+        number = '555597332232';
       }
       const url = `https://wa.me/${number}`;
       window.open(url, '_blank');
