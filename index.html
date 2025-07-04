@@ -8,15 +8,15 @@
     :root {
       --verde: #1b3b2f;
       --laranja: #ff6b00;
-      --claro: #fdfaf5;
+      --fundo-escuro: #111111;
     }
 
     body {
       font-family: 'Poppins', sans-serif;
       margin: 0;
       padding: 1rem;
-      background: linear-gradient(135deg, #fdfaf5, #f2eee5);
-      color: var(--verde);
+      background: var(--fundo-escuro);
+      color: #ffffff;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -28,8 +28,8 @@
       aspect-ratio: 3 / 4;
       overflow: hidden;
       border-radius: 16px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-      background: white;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+      background: #000;
       position: relative;
     }
 
@@ -67,13 +67,17 @@
       color: white;
       font-size: 28px;
       cursor: pointer;
-      box-shadow: inset -3px -3px 10px rgba(255, 255, 255, 0.2), inset 3px 3px 10px rgba(0, 0, 0, 0.1), 0 10px 20px rgba(255, 107, 0, 0.4);
-      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow:
+        inset -3px -3px 8px rgba(255, 255, 255, 0.1),
+        inset 3px 3px 8px rgba(0, 0, 0, 0.2),
+        0 10px 20px rgba(255, 107, 0, 0.5),
+        0 4px 8px rgba(0, 0, 0, 0.3);
+      transition: transform 0.2s ease, box-shadow 0.3s ease;
     }
 
     .arrow-btn:hover {
-      transform: scale(1.1);
-      box-shadow: 0 12px 25px rgba(255, 107, 0, 0.6);
+      transform: scale(1.15);
+      box-shadow: 0 12px 25px rgba(255, 107, 0, 0.7);
     }
 
     .btn-whatsapp-container {
@@ -96,7 +100,11 @@
       align-items: center;
       gap: 0.8rem;
       cursor: pointer;
-      box-shadow: inset -3px -3px 10px rgba(255, 255, 255, 0.2), inset 3px 3px 10px rgba(0, 0, 0, 0.1), 0 10px 20px rgba(37, 211, 102, 0.4);
+      box-shadow:
+        inset -3px -3px 8px rgba(255, 255, 255, 0.1),
+        inset 3px 3px 8px rgba(0, 0, 0, 0.2),
+        0 10px 20px rgba(37, 211, 102, 0.5),
+        0 4px 8px rgba(0, 0, 0, 0.3);
       transition: all 0.3s ease;
     }
 
@@ -149,6 +157,8 @@
   <script>
     let currentSlide = 0;
     const slider = document.getElementById('slider');
+    const sliderContainer = document.getElementById('slider-container');
+
     function changeSlide(direction) {
       const total = slider.children.length;
       currentSlide = Math.min(Math.max(currentSlide + direction, 0), total - 1);
@@ -159,6 +169,19 @@
       let number = country === 'br' ? '55997332232' : '555597332232';
       window.open(`https://wa.me/${number}`, '_blank');
     }
+
+    // Suporte a gesto de swipe para celular
+    let startX = 0;
+    sliderContainer.addEventListener('touchstart', (e) => {
+      startX = e.touches[0].clientX;
+    });
+
+    sliderContainer.addEventListener('touchend', (e) => {
+      const endX = e.changedTouches[0].clientX;
+      const diff = startX - endX;
+      if (diff > 50) changeSlide(1);
+      else if (diff < -50) changeSlide(-1);
+    });
   </script>
 </body>
 </html>
